@@ -30,17 +30,16 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button1 = new Button();
+            actionBox = new ComboBox();
+            matrixRight = new TableLayoutPanel();
+            matrixLeft = new TableLayoutPanel();
+            matrixSizeRight = new ComboBox();
+            matrixSizeLeft = new ComboBox();
+            label3 = new Label();
+            label1 = new Label();
             label2 = new Label();
             label32 = new Label();
-            filterButton = new Button();
-            exampleButton = new Button();
-            showPathButton = new Button();
-            maxFileSizeNumeric = new NumericUpDown();
-            filterTextBox = new TextBox();
-            directoryBox = new TextBox();
-            label3 = new Label();
-            wordToFilter = new Label();
-            label1 = new Label();
             tabPage2 = new TabPage();
             label12 = new Label();
             label13 = new Label();
@@ -56,9 +55,10 @@
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
+            actionButton = new Button();
+            matrixOne = new TableLayoutPanel();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)maxFileSizeNumeric).BeginInit();
             tabPage2.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,30 +69,110 @@
             tabControl1.Location = new Point(1, -1);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(991, 481);
+            tabControl1.Size = new Size(991, 581);
             tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.LightCoral;
+            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(actionBox);
+            tabPage1.Controls.Add(matrixRight);
+            tabPage1.Controls.Add(matrixLeft);
+            tabPage1.Controls.Add(matrixSizeRight);
+            tabPage1.Controls.Add(matrixSizeLeft);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label32);
-            tabPage1.Controls.Add(filterButton);
-            tabPage1.Controls.Add(exampleButton);
-            tabPage1.Controls.Add(showPathButton);
-            tabPage1.Controls.Add(maxFileSizeNumeric);
-            tabPage1.Controls.Add(filterTextBox);
-            tabPage1.Controls.Add(directoryBox);
-            tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(wordToFilter);
-            tabPage1.Controls.Add(label1);
             tabPage1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage1.Location = new Point(4, 27);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(983, 450);
+            tabPage1.Size = new Size(983, 550);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Фильтр файлов";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(372, 501);
+            button1.Name = "button1";
+            button1.Size = new Size(229, 41);
+            button1.TabIndex = 26;
+            button1.Text = "Выполнить рассчёт";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += actionButton_Click;
+            // 
+            // actionBox
+            // 
+            actionBox.FormattingEnabled = true;
+            actionBox.Items.AddRange(new object[] { "+", "-", "*" });
+            actionBox.Location = new Point(417, 83);
+            actionBox.Name = "actionBox";
+            actionBox.Size = new Size(151, 32);
+            actionBox.TabIndex = 25;
+            // 
+            // matrixRight
+            // 
+            matrixRight.ColumnCount = 2;
+            matrixRight.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
+            matrixRight.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
+            matrixRight.Location = new Point(587, 144);
+            matrixRight.Name = "matrixRight";
+            matrixRight.RowCount = 2;
+            matrixRight.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixRight.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixRight.Size = new Size(374, 351);
+            matrixRight.TabIndex = 24;
+            // 
+            // matrixLeft
+            // 
+            matrixLeft.ColumnCount = 2;
+            matrixLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
+            matrixLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
+            matrixLeft.Location = new Point(11, 144);
+            matrixLeft.Name = "matrixLeft";
+            matrixLeft.RowCount = 2;
+            matrixLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixLeft.Size = new Size(387, 351);
+            matrixLeft.TabIndex = 23;
+            // 
+            // matrixSizeRight
+            // 
+            matrixSizeRight.FormattingEnabled = true;
+            matrixSizeRight.Location = new Point(810, 83);
+            matrixSizeRight.Name = "matrixSizeRight";
+            matrixSizeRight.Size = new Size(151, 32);
+            matrixSizeRight.TabIndex = 22;
+            matrixSizeRight.SelectedIndexChanged += matrixSizeRight_SelectedIndexChanged;
+            // 
+            // matrixSizeLeft
+            // 
+            matrixSizeLeft.FormattingEnabled = true;
+            matrixSizeLeft.Location = new Point(11, 83);
+            matrixSizeLeft.Name = "matrixSizeLeft";
+            matrixSizeLeft.Size = new Size(151, 32);
+            matrixSizeLeft.TabIndex = 21;
+            matrixSizeLeft.SelectedIndexChanged += matrixSizeLeft_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(703, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(258, 24);
+            label3.TabIndex = 20;
+            label3.Text = "Выберите размер матрицы";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(11, 56);
+            label1.Name = "label1";
+            label1.Size = new Size(258, 24);
+            label1.TabIndex = 19;
+            label1.Text = "Выберите размер матрицы";
             // 
             // label2
             // 
@@ -111,86 +191,6 @@
             label32.Size = new Size(190, 24);
             label32.TabIndex = 9;
             label32.Text = "Добро пожаловать,";
-            // 
-            // filterButton
-            // 
-            filterButton.BackColor = Color.White;
-            filterButton.Location = new Point(386, 248);
-            filterButton.Name = "filterButton";
-            filterButton.Size = new Size(180, 32);
-            filterButton.TabIndex = 8;
-            filterButton.Text = "Отфильтровать";
-            filterButton.UseVisualStyleBackColor = false;
-            filterButton.Click += filterButton_Click;
-            // 
-            // exampleButton
-            // 
-            exampleButton.BackColor = Color.White;
-            exampleButton.Location = new Point(12, 248);
-            exampleButton.Name = "exampleButton";
-            exampleButton.Size = new Size(251, 32);
-            exampleButton.TabIndex = 7;
-            exampleButton.Text = "Сгенерировать пример";
-            exampleButton.UseVisualStyleBackColor = false;
-            // 
-            // showPathButton
-            // 
-            showPathButton.BackColor = Color.White;
-            showPathButton.Location = new Point(386, 84);
-            showPathButton.Name = "showPathButton";
-            showPathButton.Size = new Size(114, 32);
-            showPathButton.TabIndex = 6;
-            showPathButton.Text = "Обзор";
-            showPathButton.UseVisualStyleBackColor = false;
-            showPathButton.Click += showPathButton_Click;
-            // 
-            // maxFileSizeNumeric
-            // 
-            maxFileSizeNumeric.Location = new Point(386, 192);
-            maxFileSizeNumeric.Name = "maxFileSizeNumeric";
-            maxFileSizeNumeric.Size = new Size(180, 32);
-            maxFileSizeNumeric.TabIndex = 5;
-            // 
-            // filterTextBox
-            // 
-            filterTextBox.Location = new Point(12, 191);
-            filterTextBox.Name = "filterTextBox";
-            filterTextBox.Size = new Size(323, 32);
-            filterTextBox.TabIndex = 4;
-            // 
-            // directoryBox
-            // 
-            directoryBox.Location = new Point(12, 85);
-            directoryBox.Name = "directoryBox";
-            directoryBox.Size = new Size(323, 32);
-            directoryBox.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(386, 164);
-            label3.Name = "label3";
-            label3.Size = new Size(180, 24);
-            label3.TabIndex = 2;
-            label3.Text = "Размер файла(Кб)";
-            // 
-            // wordToFilter
-            // 
-            wordToFilter.AutoSize = true;
-            wordToFilter.Location = new Point(12, 164);
-            wordToFilter.Name = "wordToFilter";
-            wordToFilter.Size = new Size(323, 24);
-            wordToFilter.TabIndex = 1;
-            wordToFilter.Text = "Слово или фраза для фильтрации";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(18, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(182, 24);
-            label1.TabIndex = 0;
-            label1.Text = "Путь к директории";
             // 
             // tabPage2
             // 
@@ -213,7 +213,7 @@
             tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(983, 450);
+            tabPage2.Size = new Size(983, 550);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Пользователь";
             // 
@@ -337,18 +337,39 @@
             label4.TabIndex = 0;
             label4.Text = "Личные данные";
             // 
+            // actionButton
+            // 
+            actionButton.Location = new Point(560, 472);
+            actionButton.Name = "actionButton";
+            actionButton.Size = new Size(229, 41);
+            actionButton.TabIndex = 21;
+            actionButton.Text = "Выполнить рассчёт";
+            actionButton.UseVisualStyleBackColor = true;
+            // 
+            // matrixOne
+            // 
+            matrixOne.ColumnCount = 2;
+            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
+            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            matrixOne.Location = new Point(0, 0);
+            matrixOne.Name = "matrixOne";
+            matrixOne.RowCount = 2;
+            matrixOne.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            matrixOne.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            matrixOne.Size = new Size(200, 100);
+            matrixOne.TabIndex = 0;
+            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 481);
+            ClientSize = new Size(974, 580);
             Controls.Add(tabControl1);
             Name = "UserForm";
             Text = "Form1";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)maxFileSizeNumeric).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ResumeLayout(false);
@@ -360,15 +381,6 @@
         private TabPage tabPage1;
         private Label label2;
         private Label label32;
-        private Button filterButton;
-        private Button exampleButton;
-        private Button showPathButton;
-        private NumericUpDown maxFileSizeNumeric;
-        private TextBox filterTextBox;
-        private TextBox directoryBox;
-        private Label label3;
-        private Label wordToFilter;
-        private Label label1;
         private TabPage tabPage2;
         private Label label12;
         private Label label13;
@@ -384,5 +396,15 @@
         private Label label6;
         private Label label5;
         private Label label4;
+        private Button actionButton;
+        private TableLayoutPanel matrixOne;
+        private Button button1;
+        private ComboBox actionBox;
+        private TableLayoutPanel matrixRight;
+        private TableLayoutPanel matrixLeft;
+        private ComboBox matrixSizeRight;
+        private ComboBox matrixSizeLeft;
+        private Label label3;
+        private Label label1;
     }
 }

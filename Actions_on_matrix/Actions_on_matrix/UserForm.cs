@@ -1,17 +1,31 @@
+using System.Drawing.Drawing2D;
+using System.Globalization;
+
 namespace Actions_on_matrix
 {
     public partial class UserForm : Form
     {
+        List<System.Windows.Forms.TextBox> matrixOneLeft = new List<System.Windows.Forms.TextBox>();
+        List<System.Windows.Forms.TextBox> matrixTwoRight = new List<System.Windows.Forms.TextBox>();
         private string _currentUser;
         public UserForm()
         {
             InitializeComponent();
+            for (int i = 7; i > 1; i--)
+            {
+                matrixSizeLeft.Items.Add(i);
+                matrixSizeRight.Items.Add(i);
+            }
         }
 
         public UserForm(string currentLine)
         {
             InitializeComponent();
-
+            for (int i = 7; i > 1; i--)
+            {
+                matrixSizeLeft.Items.Add(i);
+                matrixSizeRight.Items.Add(i);
+            }
             LoadUserData(currentLine);
         }
 
@@ -83,66 +97,121 @@ namespace Actions_on_matrix
             }
         }
 
-        private void showPathButton_Click(object sender, EventArgs e)
+        private void matrixSizeLeft_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
+            matrixOneLeft.Clear();
+            int size = (int)matrixSizeLeft.SelectedItem;
+
+            matrixLeft.Controls.Clear();
+            matrixLeft.ColumnCount = size;
+            matrixLeft.RowCount = size;
+
+            for (int i = 0; i < size; i++)
             {
-                directoryBox.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void filterButton_Click(object sender, EventArgs e)
-        {
-            // Получаем путь из текстового поля
-            string path = directoryBox.Text;
-
-            // Получаем слова для фильтрации
-            string[] filterWords = filterTextBox.Text.Split(' ');
-
-            // Получаем максимальный размер файла
-            int maxSize = (int)maxFileSizeNumeric.Value * 1024 * 1024;
-
-            // Ищем файлы по фильтру
-            List<string> filteredFiles = GetFilteredFiles(path, filterWords, maxSize);
-            string filesList = string.Join("\n", filteredFiles);
-
-            DialogResult result = MessageBox.Show(
-            $"Найдены следующие файлы:\n{filesList}\n\nУдалить их?",
-            "Подтверждение",
-            MessageBoxButtons.YesNo);
-            // Если пользователь подтвердил удаление - удаляем
-            if (result == DialogResult.Yes)
-            {
-                DeleteFiles(filteredFiles);
-                MessageBox.Show("Файлы успешно удалены");
-            }
-        }
-        // Метод для поиска файлов по фильтру
-        List<string> GetFilteredFiles(string path, string[] filterWords, int maxSize)
-        {
-            List<string> filteredFiles = new List<string>();
-
-            foreach (string filePath in Directory.GetFiles(path))
-            {
-                FileInfo fileInfo = new FileInfo(filePath);
-
-                if (fileInfo.Length <= maxSize &&
-                    filterWords.Any(w => fileInfo.Name.Contains(w)))
+                for (int j = 0; j < size; j++)
                 {
-                    filteredFiles.Add(filePath);
+                    System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+                    matrixOneLeft.Add(textBox);
+                    textBox.Width = 30;
+                    textBox.Height = 20;
+                    textBox.KeyPress += TextBox_KeyPress;
+                    matrixLeft.Controls.Add(textBox, i, j);
                 }
             }
-
-            return filteredFiles;
         }
-        // Метод для удаления файлов
-        void DeleteFiles(List<string> filesToDelete)
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            foreach (string file in filesToDelete)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
+                           && e.KeyChar != '.')
             {
-                File.Delete(file);
+                e.Handled = true;
             }
+        }
+
+        private void matrixSizeRight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            matrixTwoRight.Clear();
+            int size = (int)matrixSizeRight.SelectedItem;
+
+            matrixRight.Controls.Clear();
+            matrixRight.ColumnCount = size;
+            matrixRight.RowCount = size;
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    System.Windows.Forms.TextBox textBox1 = new System.Windows.Forms.TextBox();
+                    matrixTwoRight.Add(textBox1);
+                    textBox1.Width = 30;
+                    textBox1.Height = 20;
+                    textBox1.KeyPress += TextBox_KeyPress;
+                    matrixRight.Controls.Add(textBox1, i, j);
+                }
+            }
+        }
+
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+
+
+            if ((int)matrixSizeLeft.SelectedItem != (int)matrixSizeRight.SelectedItem)
+            {
+                MessageBox.Show("Мартицы должны быть одинакового размера");
+            }
+            else
+            {
+                int size = (int)matrixSizeRight.SelectedItem;
+                double[,] result = new double[size, size];
+                switch (actionBox.SelectedItem.ToString())
+                {
+                    case "+":
+                        for (int i = 0; i < matrixOneLeft.Count; i++)
+                        {
+                            double a = Double.Parse(matrixOneLeft[i].Text, CultureInfo.InvariantCulture);
+                            double b = Double.Parse(matrixTwoRight[i].Text, CultureInfo.InvariantCulture);
+
+                            result[i / size, i % size] = Math.Round(a + b, 2);
+                        }
+                        break;
+
+                    case "-":
+                        for (int i = 0; i < matrixOneLeft.Count; i++)
+                        {
+                            double a = Double.Parse(matrixOneLeft[i].Text, CultureInfo.InvariantCulture);
+                            double b = Double.Parse(matrixTwoRight[i].Text, CultureInfo.InvariantCulture);
+
+                            result[i / size, i % size] = Math.Round(a - b, 2);
+                        }
+                        break;
+
+                    case "*":
+                        for (int i = 0; i < matrixOneLeft.Count; i++)
+                        {
+                            double a = Double.Parse(matrixOneLeft[i].Text, CultureInfo.InvariantCulture);
+                            double b = Double.Parse(matrixTwoRight[i].Text, CultureInfo.InvariantCulture);
+
+                            result[i / size, i % size] = Math.Round(a * b, 2);
+                        }
+                        break;
+
+                }
+                string message = "Результат:" + "\n";
+
+                for (int i = 0; i < size; i++)
+                {
+                    for (int j = 0; j < size; j++)
+                    {
+                        message += result[i, j].ToString().PadLeft(8);
+                    }
+                    message += "\n";
+                }
+
+                MessageBox.Show(message);
+
+            }
+
         }
     }
 

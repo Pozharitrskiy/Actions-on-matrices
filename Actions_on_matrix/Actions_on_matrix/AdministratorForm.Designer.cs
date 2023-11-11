@@ -30,6 +30,8 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            actionButton = new Button();
+            actionBox = new ComboBox();
             matrixTwo = new TableLayoutPanel();
             matrixOne = new TableLayoutPanel();
             matrixSizeRight = new ComboBox();
@@ -72,8 +74,6 @@
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
-            actionBox = new ComboBox();
-            actionButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -112,6 +112,25 @@
             tabPage1.Size = new Size(972, 554);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Фильтр файлов";
+            // 
+            // actionButton
+            // 
+            actionButton.Location = new Point(370, 507);
+            actionButton.Name = "actionButton";
+            actionButton.Size = new Size(229, 41);
+            actionButton.TabIndex = 18;
+            actionButton.Text = "Выполнить рассчёт";
+            actionButton.UseVisualStyleBackColor = true;
+            actionButton.Click += actionButton_Click;
+            // 
+            // actionBox
+            // 
+            actionBox.FormattingEnabled = true;
+            actionBox.Items.AddRange(new object[] { "+", "-", "*" });
+            actionBox.Location = new Point(415, 89);
+            actionBox.Name = "actionBox";
+            actionBox.Size = new Size(151, 32);
+            actionBox.TabIndex = 17;
             // 
             // matrixTwo
             // 
@@ -214,7 +233,7 @@
             tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(972, 513);
+            tabPage2.Size = new Size(972, 554);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Пользователь";
             // 
@@ -355,7 +374,7 @@
             tabPage3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage3.Location = new Point(4, 27);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(972, 513);
+            tabPage3.Size = new Size(972, 554);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Администрирование";
             // 
@@ -513,25 +532,6 @@
             label9.Size = new Size(413, 24);
             label9.TabIndex = 0;
             label9.Text = "Список загеристрированных пользователей";
-            // 
-            // actionBox
-            // 
-            actionBox.FormattingEnabled = true;
-            actionBox.Items.AddRange(new object[] { "+", "-", "*" });
-            actionBox.Location = new Point(415, 89);
-            actionBox.Name = "actionBox";
-            actionBox.Size = new Size(151, 32);
-            actionBox.TabIndex = 17;
-            // 
-            // actionButton
-            // 
-            actionButton.Location = new Point(370, 507);
-            actionButton.Name = "actionButton";
-            actionButton.Size = new Size(229, 41);
-            actionButton.TabIndex = 18;
-            actionButton.Text = "Выполнить рассчёт";
-            actionButton.UseVisualStyleBackColor = true;
-            actionButton.Click += actionButton_Click;
             // 
             // AdministratorForm
             // 

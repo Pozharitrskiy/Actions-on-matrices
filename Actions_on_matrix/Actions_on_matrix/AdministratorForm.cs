@@ -160,7 +160,7 @@ namespace Actions_on_matrix
                 warningsCount.Text = sr.ReadLine();
             }
 
-
+            label2.Text = userLogin;
             label26.Text = userLogin;
             label17.Text = userLogin;
             _currentUser = userLogin;
@@ -360,14 +360,15 @@ namespace Actions_on_matrix
         private void actionButton_Click(object sender, EventArgs e)
         {
 
-            
+
             if ((int)matrixSizeLeft.SelectedItem != (int)matrixSizeRight.SelectedItem)
             {
                 MessageBox.Show("Мартицы должны быть одинакового размера");
             }
-            else { 
-            int size = (int)matrixSizeRight.SelectedItem;
-            double[,] result = new double[size, size];
+            else
+            {
+                int size = (int)matrixSizeRight.SelectedItem;
+                double[,] result = new double[size, size];
                 switch (actionBox.SelectedItem.ToString())
                 {
                     case "+":
@@ -415,9 +416,9 @@ namespace Actions_on_matrix
                 MessageBox.Show(message);
 
             }
-            
+
         }
 
-        
+
     }
 }
