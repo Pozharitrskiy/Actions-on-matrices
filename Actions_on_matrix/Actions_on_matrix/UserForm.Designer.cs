@@ -91,7 +91,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(983, 550);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "Фильтр файлов";
+            tabPage1.Text = "Матрицы";
             // 
             // button1
             // 
