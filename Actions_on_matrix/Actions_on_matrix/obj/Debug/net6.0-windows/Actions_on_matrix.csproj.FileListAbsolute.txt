@@ -28,3 +28,10 @@ D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actio
 D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\obj\Debug\net6.0-windows\Actions_on_matrix.dll
 D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\obj\Debug\net6.0-windows\refint\Actions_on_matrix.dll
 D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\obj\Debug\net6.0-windows\Actions_on_matrix.pdb
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\bin\Debug\net6.0-windows\Actions_on_matrix.exe
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\bin\Debug\net6.0-windows\Actions_on_matrix.deps.json
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\bin\Debug\net6.0-windows\Actions_on_matrix.runtimeconfig.json
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\bin\Debug\net6.0-windows\Actions_on_matrix.dll
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\bin\Debug\net6.0-windows\Actions_on_matrix.pdb
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\obj\Debug\net6.0-windows\Actions_on_matrix.genruntimeconfig.cache
+D:\Downloads\Пожарицкий ГД\Actions-on-matrix\Actions_on_matrix\Actions_on_matrix\obj\Debug\net6.0-windows\ref\Actions_on_matrix.dll

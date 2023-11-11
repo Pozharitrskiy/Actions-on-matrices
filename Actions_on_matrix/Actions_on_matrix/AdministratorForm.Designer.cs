@@ -30,6 +30,12 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            matrixTwo = new TableLayoutPanel();
+            matrixOne = new TableLayoutPanel();
+            matrixSizeRight = new ComboBox();
+            matrixSizeLeft = new ComboBox();
+            label3 = new Label();
+            label1 = new Label();
             label2 = new Label();
             label32 = new Label();
             tabPage2 = new TabPage();
@@ -66,12 +72,6 @@
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
-            label1 = new Label();
-            label3 = new Label();
-            matrixSizeLeft = new ComboBox();
-            matrixSizeRight = new ComboBox();
-            matrixOne = new TableLayoutPanel();
-            matrixTwo = new TableLayoutPanel();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -87,7 +87,7 @@
             tabControl1.Location = new Point(-1, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(980, 468);
+            tabControl1.Size = new Size(980, 544);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -105,9 +105,71 @@
             tabPage1.Location = new Point(4, 27);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(972, 437);
+            tabPage1.Size = new Size(972, 513);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Фильтр файлов";
+            // 
+            // matrixTwo
+            // 
+            matrixTwo.ColumnCount = 2;
+            matrixTwo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
+            matrixTwo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
+            matrixTwo.Location = new Point(585, 150);
+            matrixTwo.Name = "matrixTwo";
+            matrixTwo.RowCount = 2;
+            matrixTwo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixTwo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixTwo.Size = new Size(374, 351);
+            matrixTwo.TabIndex = 16;
+            // 
+            // matrixOne
+            // 
+            matrixOne.ColumnCount = 2;
+            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
+            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
+            matrixOne.Location = new Point(9, 150);
+            matrixOne.Name = "matrixOne";
+            matrixOne.RowCount = 2;
+            matrixOne.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixOne.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            matrixOne.Size = new Size(387, 351);
+            matrixOne.TabIndex = 15;
+            // 
+            // matrixSizeRight
+            // 
+            matrixSizeRight.FormattingEnabled = true;
+            matrixSizeRight.Location = new Point(808, 89);
+            matrixSizeRight.Name = "matrixSizeRight";
+            matrixSizeRight.Size = new Size(151, 32);
+            matrixSizeRight.TabIndex = 14;
+            matrixSizeRight.SelectedIndexChanged += matrixSizeRight_SelectedIndexChanged;
+            // 
+            // matrixSizeLeft
+            // 
+            matrixSizeLeft.FormattingEnabled = true;
+            matrixSizeLeft.Location = new Point(9, 89);
+            matrixSizeLeft.Name = "matrixSizeLeft";
+            matrixSizeLeft.Size = new Size(151, 32);
+            matrixSizeLeft.TabIndex = 13;
+            matrixSizeLeft.SelectedIndexChanged += matrixSizeLeft_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(701, 62);
+            label3.Name = "label3";
+            label3.Size = new Size(258, 24);
+            label3.TabIndex = 12;
+            label3.Text = "Выберите размер матрицы";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(9, 62);
+            label1.Name = "label1";
+            label1.Size = new Size(258, 24);
+            label1.TabIndex = 11;
+            label1.Text = "Выберите размер матрицы";
             // 
             // label2
             // 
@@ -148,7 +210,7 @@
             tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(972, 437);
+            tabPage2.Size = new Size(972, 513);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Пользователь";
             // 
@@ -289,7 +351,7 @@
             tabPage3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage3.Location = new Point(4, 27);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(972, 437);
+            tabPage3.Size = new Size(972, 513);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Администрирование";
             // 
@@ -448,74 +510,11 @@
             label9.TabIndex = 0;
             label9.Text = "Список загеристрированных пользователей";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(9, 62);
-            label1.Name = "label1";
-            label1.Size = new Size(258, 24);
-            label1.TabIndex = 11;
-            label1.Text = "Выберите размер матрицы";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(701, 62);
-            label3.Name = "label3";
-            label3.Size = new Size(258, 24);
-            label3.TabIndex = 12;
-            label3.Text = "Выберите размер матрицы";
-            // 
-            // matrixSizeLeft
-            // 
-            matrixSizeLeft.FormattingEnabled = true;
-            matrixSizeLeft.Items.AddRange(new object[] { "2x2", "3x3", "4x4", "5x5", "6x6", "7x7" });
-            matrixSizeLeft.Location = new Point(9, 89);
-            matrixSizeLeft.Name = "matrixSizeLeft";
-            matrixSizeLeft.Size = new Size(151, 32);
-            matrixSizeLeft.TabIndex = 13;
-            matrixSizeLeft.SelectedIndexChanged += matrixSizeLeft_SelectedIndexChanged;
-            // 
-            // matrixSizeRight
-            // 
-            matrixSizeRight.FormattingEnabled = true;
-            matrixSizeRight.Items.AddRange(new object[] { "2x2", "3x3", "4x4", "5x5", "6x6", "7x7" });
-            matrixSizeRight.Location = new Point(808, 89);
-            matrixSizeRight.Name = "matrixSizeRight";
-            matrixSizeRight.Size = new Size(151, 32);
-            matrixSizeRight.TabIndex = 14;
-            // 
-            // matrixOne
-            // 
-            matrixOne.ColumnCount = 2;
-            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
-            matrixOne.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
-            matrixOne.Location = new Point(9, 150);
-            matrixOne.Name = "matrixOne";
-            matrixOne.RowCount = 2;
-            matrixOne.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            matrixOne.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            matrixOne.Size = new Size(250, 125);
-            matrixOne.TabIndex = 15;
-            // 
-            // matrixTwo
-            // 
-            matrixTwo.ColumnCount = 2;
-            matrixTwo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.4F));
-            matrixTwo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.6F));
-            matrixTwo.Location = new Point(709, 150);
-            matrixTwo.Name = "matrixTwo";
-            matrixTwo.RowCount = 2;
-            matrixTwo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            matrixTwo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            matrixTwo.Size = new Size(250, 125);
-            matrixTwo.TabIndex = 16;
-            // 
             // AdministratorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 465);
+            ClientSize = new Size(974, 540);
             Controls.Add(tabControl1);
             Name = "AdministratorForm";
             Text = "AdministratorForm";

@@ -1,4 +1,4 @@
-namespace File_filter_system
+namespace Actions_on_matrix
 {
     internal static class Program
     {

@@ -24,7 +24,11 @@ namespace Actions_on_matrix
         public AdministratorForm(string userLogin)
         {
             InitializeComponent();
-
+            for (int i = 7; i > 1; i--)
+            {
+                matrixSizeLeft.Items.Add(i);
+                matrixSizeRight.Items.Add(i);
+            }
 
             if (userLogin == "admin")
                 LoadAdminData(userLogin);
@@ -37,6 +41,8 @@ namespace Actions_on_matrix
         {
             InitializeComponent();
             dataGridView1.DataSource = null;
+
+
         }
 
         private void LoadUsersData()
@@ -130,7 +136,7 @@ namespace Actions_on_matrix
                 userSurnameBox.Text = sr.ReadLine();
             }
 
-            wordToFilter.Text = userLogin;
+
             label12.Text = userLogin;
             label17.Text = userLogin;
             _currentUser = userLogin;
@@ -151,7 +157,7 @@ namespace Actions_on_matrix
                 warningsCount.Text = sr.ReadLine();
             }
 
-            wordToFilter.Text = userLogin;
+
             label26.Text = userLogin;
             label17.Text = userLogin;
             _currentUser = userLogin;
@@ -292,70 +298,10 @@ namespace Actions_on_matrix
             UpdateLogInfo("Пароль", userPasswordBox.Text, messageToLog);
         }
 
-        private void showPathButton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                directoryBox.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void filterButton_Click(object sender, EventArgs e)
-        {
-            // Получаем путь из текстового поля
-            string path = directoryBox.Text;
-
-            // Получаем слова для фильтрации
-            string[] filterWords = filterTextBox.Text.Split(' ');
-
-            // Получаем максимальный размер файла
-            int maxSize = (int)maxFileSizeNumeric.Value * 1024 * 1024;
-
-            // Ищем файлы по фильтру
-            List<string> filteredFiles = GetFilteredFiles(path, filterWords, maxSize);
-            string filesList = string.Join("\n", filteredFiles);
-
-            DialogResult result = MessageBox.Show(
-            $"Найдены следующие файлы:\n{filesList}\n\nУдалить их?",
-            "Подтверждение",
-            MessageBoxButtons.YesNo);
-            // Если пользователь подтвердил удаление - удаляем
-            if (result == DialogResult.Yes)
-            {
-                DeleteFiles(filteredFiles);
-                MessageBox.Show("Файлы успешно удалены");
-            }
-        }
-        // Метод для поиска файлов по фильтру
-        List<string> GetFilteredFiles(string path, string[] filterWords, int maxSize)
-        {
-            List<string> filteredFiles = new List<string>();
-
-            foreach (string filePath in Directory.GetFiles(path))
-            {
-                FileInfo fileInfo = new FileInfo(filePath);
-
-                if (fileInfo.Length <= maxSize &&
-                    filterWords.Any(w => fileInfo.Name.Contains(w)))
-                {
-                    filteredFiles.Add(filePath);
-                }
-            }
-
-            return filteredFiles;
-        }
-        // Метод для удаления файлов
-        void DeleteFiles(List<string> filesToDelete)
-        {
-            foreach (string file in filesToDelete)
-            {
-                File.Delete(file);
-            }
-        }
 
         private void matrixSizeLeft_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<System.Windows.Forms.TextBox> matrix1 = new List<System.Windows.Forms.TextBox>();
             int size = (int)matrixSizeLeft.SelectedItem;
 
             matrixOne.Controls.Clear();
@@ -367,10 +313,11 @@ namespace Actions_on_matrix
                 for (int j = 0; j < size; j++)
                 {
                     System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+                    matrix1.Add(textBox);
                     textBox.Width = 30;
                     textBox.Height = 20;
                     textBox.KeyPress += TextBox_KeyPress;
-                    matrixOne.Controls.Add(textBox, j, i);
+                    matrixOne.Controls.Add(textBox, i, j);
                 }
             }
         }
@@ -383,4 +330,28 @@ namespace Actions_on_matrix
                 e.Handled = true;
             }
         }
+
+        private void matrixSizeRight_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<System.Windows.Forms.TextBox> matrix2 = new List<System.Windows.Forms.TextBox>();
+            int size = (int)matrixSizeRight.SelectedItem;
+
+            matrixTwo.Controls.Clear();
+            matrixTwo.ColumnCount = size;
+            matrixTwo.RowCount = size;
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+                    matrix2.Add(textBox);
+                    textBox.Width = 30;
+                    textBox.Height = 20;
+                    textBox.KeyPress += TextBox_KeyPress;
+                    matrixTwo.Controls.Add(textBox, i, j);
+                }
+            }
+        }
+    }
 }
