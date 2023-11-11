@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +18,8 @@ namespace Actions_on_matrix
 
     public partial class AdministratorForm : Form
     {
-
+        List<System.Windows.Forms.TextBox> matrix1 = new List<System.Windows.Forms.TextBox>();
+        List<System.Windows.Forms.TextBox> matrix2 = new List<System.Windows.Forms.TextBox>();
         private string _currentUser;
         private DataTable _dataTable;
 
@@ -301,7 +304,7 @@ namespace Actions_on_matrix
 
         private void matrixSizeLeft_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<System.Windows.Forms.TextBox> matrix1 = new List<System.Windows.Forms.TextBox>();
+            matrix1.Clear();
             int size = (int)matrixSizeLeft.SelectedItem;
 
             matrixOne.Controls.Clear();
@@ -333,7 +336,7 @@ namespace Actions_on_matrix
 
         private void matrixSizeRight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<System.Windows.Forms.TextBox> matrix2 = new List<System.Windows.Forms.TextBox>();
+            matrix2.Clear();
             int size = (int)matrixSizeRight.SelectedItem;
 
             matrixTwo.Controls.Clear();
@@ -344,14 +347,77 @@ namespace Actions_on_matrix
             {
                 for (int j = 0; j < size; j++)
                 {
-                    System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
-                    matrix2.Add(textBox);
-                    textBox.Width = 30;
-                    textBox.Height = 20;
-                    textBox.KeyPress += TextBox_KeyPress;
-                    matrixTwo.Controls.Add(textBox, i, j);
+                    System.Windows.Forms.TextBox textBox1 = new System.Windows.Forms.TextBox();
+                    matrix2.Add(textBox1);
+                    textBox1.Width = 30;
+                    textBox1.Height = 20;
+                    textBox1.KeyPress += TextBox_KeyPress;
+                    matrixTwo.Controls.Add(textBox1, i, j);
                 }
             }
         }
+
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+
+            
+            if ((int)matrixSizeLeft.SelectedItem != (int)matrixSizeRight.SelectedItem)
+            {
+                MessageBox.Show("Мартицы должны быть одинакового размера");
+            }
+            else { 
+            int size = (int)matrixSizeRight.SelectedItem;
+            double[,] result = new double[size, size];
+                switch (actionBox.SelectedItem.ToString())
+                {
+                    case "+":
+                        for (int i = 0; i < matrix1.Count; i++)
+                        {
+                            double a = Double.Parse(matrix1[i].Text);
+                            double b = Double.Parse(matrix2[i].Text);
+
+                            result[i / size, i % size] = a + b;
+                        }
+                        break;
+
+                    case "-":
+                        for (int i = 0; i < matrix1.Count; i++)
+                        {
+                            double a = Double.Parse(matrix1[i].Text);
+                            double b = Double.Parse(matrix2[i].Text);
+
+                            result[i / size, i % size] = a - b;
+                        }
+                        break;
+
+                    case "*":
+                        for (int i = 0; i < matrix1.Count; i++)
+                        {
+                            double a = Double.Parse(matrix1[i].Text);
+                            double b = Double.Parse(matrix2[i].Text);
+
+                            result[i / size, i % size] = a * b;
+                        }
+                        break;
+
+                }
+                string message = "Результат:";
+
+                for (int i = 0; i < size; i++)
+                {
+                    for (int j = 0; j < size; j++)
+                    {
+                        message += result[i, j].ToString().PadLeft(8);
+                    }
+                    message += "\n";
+                }
+
+                MessageBox.Show(message);
+
+            }
+            
+        }
+
+        
     }
 }

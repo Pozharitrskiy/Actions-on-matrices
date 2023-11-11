@@ -72,6 +72,8 @@
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
+            actionBox = new ComboBox();
+            actionButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -87,12 +89,14 @@
             tabControl1.Location = new Point(-1, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(980, 544);
+            tabControl1.Size = new Size(980, 585);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.LightCoral;
+            tabPage1.Controls.Add(actionButton);
+            tabPage1.Controls.Add(actionBox);
             tabPage1.Controls.Add(matrixTwo);
             tabPage1.Controls.Add(matrixOne);
             tabPage1.Controls.Add(matrixSizeRight);
@@ -105,7 +109,7 @@
             tabPage1.Location = new Point(4, 27);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(972, 513);
+            tabPage1.Size = new Size(972, 554);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Фильтр файлов";
             // 
@@ -510,11 +514,30 @@
             label9.TabIndex = 0;
             label9.Text = "Список загеристрированных пользователей";
             // 
+            // actionBox
+            // 
+            actionBox.FormattingEnabled = true;
+            actionBox.Items.AddRange(new object[] { "+", "-", "*" });
+            actionBox.Location = new Point(415, 89);
+            actionBox.Name = "actionBox";
+            actionBox.Size = new Size(151, 32);
+            actionBox.TabIndex = 17;
+            // 
+            // actionButton
+            // 
+            actionButton.Location = new Point(370, 507);
+            actionButton.Name = "actionButton";
+            actionButton.Size = new Size(229, 41);
+            actionButton.TabIndex = 18;
+            actionButton.Text = "Выполнить рассчёт";
+            actionButton.UseVisualStyleBackColor = true;
+            actionButton.Click += actionButton_Click;
+            // 
             // AdministratorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 540);
+            ClientSize = new Size(974, 580);
             Controls.Add(tabControl1);
             Name = "AdministratorForm";
             Text = "AdministratorForm";
@@ -576,5 +599,7 @@
         private Label label1;
         private TableLayoutPanel matrixTwo;
         private TableLayoutPanel matrixOne;
+        private ComboBox actionBox;
+        private Button actionButton;
     }
 }
